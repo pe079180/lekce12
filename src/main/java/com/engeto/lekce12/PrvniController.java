@@ -1,6 +1,7 @@
 package com.engeto.lekce12;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -18,4 +19,14 @@ public class PrvniController {
 
         return ucitel;
     }
+
+    @GetMapping("/helloParams")
+    public Ucitel helloTeacherWithParams(@RequestParam String jmeno, @RequestParam String prijmeni){
+        Ucitel ucitel = new Ucitel();
+        ucitel.setJmeno(jmeno);
+        ucitel.setPrijmeni(prijmeni);
+
+        return ucitel;
+    }
+
 }
