@@ -9,6 +9,10 @@ public class Ucitel {
         this.id = id;
     }
 
+    public String getId() {
+        return id;
+    }
+
     public String getJmeno() {
         return jmeno;
     }

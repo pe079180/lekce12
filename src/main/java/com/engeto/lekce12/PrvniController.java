@@ -2,6 +2,7 @@ package com.engeto.lekce12;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -56,12 +57,27 @@ public class PrvniController {
         return zakladDB.get(id);
     }
 
+    @GetMapping("/teachers")
+    public Collection<Ucitel> getAllTeachers() {
+        return zakladDB.values();
+    }
+
+    @DeleteMapping("/teachers/{id}")
+    public void deleteTeacherById(@PathVariable String id) {
+        zakladDB.remove(id);
+    }
+
     @PostMapping("/teachers")
     public Ucitel saveTeacher(@RequestBody Ucitel ucitel) {
         Integer id = zakladDB.size() + 1;
         ucitel.setId(id.toString());
-        zakladDB.put(id.toString(),ucitel);
+        zakladDB.put(id.toString(), ucitel);
         return ucitel;
     }
 
+    @PutMapping("/teachers/{id}")
+    public Ucitel updateTeacher(@RequestBody Ucitel ucitel, @PathVariable String id) {
+        zakladDB.put(id, ucitel);
+        return ucitel;
+    }
 }
