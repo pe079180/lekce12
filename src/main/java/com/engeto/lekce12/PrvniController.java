@@ -6,9 +6,12 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+// controler slouzi k tomu aby se tam definovaly API
+
 @RestController
 public class PrvniController {
     Map<String, Ucitel> zakladDB = new HashMap<>();
+    //Integer idSequence = 0;
 
     @GetMapping("/hello")
     public String helloWorld() {
@@ -69,7 +72,8 @@ public class PrvniController {
 
     @PostMapping("/teachers")
     public Ucitel saveTeacher(@RequestBody Ucitel ucitel) {
-        Integer id = zakladDB.size() + 1;
+        Integer id = zakladDB.size() + 1; //není uplne ok
+        //idSequence +=1; // taky není ok
         ucitel.setId(id.toString());
         zakladDB.put(id.toString(), ucitel);
         return ucitel;
